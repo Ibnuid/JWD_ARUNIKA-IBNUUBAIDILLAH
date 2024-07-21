@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+footer {
+  margin-top: 20px;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.card {
+  width: 100%;
+}
+
+.card-img-top {
+  height: 150px; /* Adjust the height to make the images smaller */
+  object-fit: cover; /* Ensure the images are properly cropped */
+}
+
+.card-body p-2 {
+  padding: 0.5rem !important;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
