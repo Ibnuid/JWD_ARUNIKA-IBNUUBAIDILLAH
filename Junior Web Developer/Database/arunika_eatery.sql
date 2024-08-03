@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 21 Jul 2024 pada 20.40
+-- Waktu pembuatan: 03 Agu 2024 pada 06.03
 -- Versi server: 5.7.24
 -- Versi PHP: 7.4.19
 
@@ -41,7 +41,14 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `customer_name`, `email`, `phone`, `tour_package_id`, `booking_date`) VALUES
-(7, 'Ibnu Ubaidillah', 'ibnucah5@gmail.com', '083156970039', 1, '2024-07-22');
+(11, 'Ibnu Ubaidillah', 'Ibnucah5@gmail.com', '083156970039', 3, '2024-09-04'),
+(12, 'Siti Aisyah', 'Sitiaisyah@gmail.com', '081123456789', 1, '2024-09-03'),
+(13, 'Ahmad Rizky', 'Ahmadrizky@gmail.com', '081567890123', 2, '2024-09-05'),
+(14, 'Lina Putri', 'Linaputri@gmail.com', '081789012345', 1, '2024-09-05'),
+(15, 'Andi Wirawan', 'andi.wirawan@gmail.com', '081901234567', 1, '2024-09-04'),
+(16, 'Dewi Anggraeni', 'dewi.anggraeni@gmail.com', '081267891234', 3, '2024-09-03'),
+(17, 'Joko Widodo', 'joko.widodo@gmail.com', '081389012345', 3, '2024-08-11'),
+(18, 'Utia Putri', 'Utiaputri@gmail.com', '081423456789', 2, '2024-09-07');
 
 -- --------------------------------------------------------
 
@@ -66,6 +73,26 @@ INSERT INTO `tour_packages` (`id`, `name`, `description`, `image`, `price`) VALU
 (2, 'Paket Liburan 2', 'Wisata kuliner dan pemandangan indah.', 'menu.jpg', 750000.00),
 (3, 'Paket Liburan 3', 'Eksplorasi budaya dan alam Kuningan.', 'view.jpg', 1000000.00);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'ibnu', '123'),
+(2, 'admin', '$2y$10$...');
+
 --
 -- Indexes for dumped tables
 --
@@ -84,6 +111,13 @@ ALTER TABLE `tour_packages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -91,13 +125,19 @@ ALTER TABLE `tour_packages`
 -- AUTO_INCREMENT untuk tabel `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tour_packages`
 --
 ALTER TABLE `tour_packages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
