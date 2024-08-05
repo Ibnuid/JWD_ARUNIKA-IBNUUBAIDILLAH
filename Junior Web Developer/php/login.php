@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Jika password benar, set session
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
         header("Location: dashboard.php"); // Alihkan ke dashboard
         exit;
     } else {
@@ -32,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $conn->close();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +40,6 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Arunika Eatery Kuningan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="container my-5">

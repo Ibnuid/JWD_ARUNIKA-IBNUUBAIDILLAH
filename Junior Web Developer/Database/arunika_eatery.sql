@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 03 Agu 2024 pada 06.03
+-- Waktu pembuatan: 05 Agu 2024 pada 04.42
 -- Versi server: 5.7.24
 -- Versi PHP: 7.4.19
 
@@ -45,10 +45,10 @@ INSERT INTO `bookings` (`id`, `customer_name`, `email`, `phone`, `tour_package_i
 (12, 'Siti Aisyah', 'Sitiaisyah@gmail.com', '081123456789', 1, '2024-09-03'),
 (13, 'Ahmad Rizky', 'Ahmadrizky@gmail.com', '081567890123', 2, '2024-09-05'),
 (14, 'Lina Putri', 'Linaputri@gmail.com', '081789012345', 1, '2024-09-05'),
-(15, 'Andi Wirawan', 'andi.wirawan@gmail.com', '081901234567', 1, '2024-09-04'),
 (16, 'Dewi Anggraeni', 'dewi.anggraeni@gmail.com', '081267891234', 3, '2024-09-03'),
 (17, 'Joko Widodo', 'joko.widodo@gmail.com', '081389012345', 3, '2024-08-11'),
-(18, 'Utia Putri', 'Utiaputri@gmail.com', '081423456789', 2, '2024-09-07');
+(18, 'Utia Putri', 'Utiaputri@gmail.com', '081423456789', 2, '2024-09-07'),
+(20, 'Adelaa', 'Adelaa@gmail.com', '081423456788', 1, '2024-09-04');
 
 -- --------------------------------------------------------
 
@@ -82,16 +82,16 @@ INSERT INTO `tour_packages` (`id`, `name`, `description`, `image`, `price`) VALU
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'ibnu', '123'),
-(2, 'admin', '$2y$10$...');
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+(1, 'ibnu', '123', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -125,7 +125,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tour_packages`

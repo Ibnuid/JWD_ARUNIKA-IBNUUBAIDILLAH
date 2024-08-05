@@ -1,58 +1,70 @@
 <?php
 session_start();
-require 'db.php';
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit;
 }
-
-// Fetch booking data
-$sql = "SELECT b.id, b.customer_name, b.email, b.phone, b.booking_date, p.name AS package_name
-        FROM bookings b
-        JOIN tour_packages p ON b.tour_package_id = p.id";
-$result = $conn->query($sql);
-
-$conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Arunika Eatery Kuningan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Dashboard</title>
 </head>
 <body>
-    <div class="container my-5">
-        <h2>Bookings</h2>
-        <table class="table table-bordered">
+    <?php include 'navbar.php'; ?>
+
+    <div class="container mt-4">
+        <h1>Selamat datang di Dashboard, <?php echo $_SESSION['username']; ?>!</h1>
+        <p>Dashboard Arunika.</p>
+
+        <!-- Tabel data bookings -->
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Customer Name</th>
+                    <th>Nama</th>
                     <th>Email</th>
-                    <th>Phone</th>
-                    <th>Package</th>
-                    <th>Date</th>
+                    <th>Telepon</th>
+                    <th>Paket Wisata</th>
+                    <th>Tanggal Pemesanan</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while($booking = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo $booking['id']; ?></td>
-                    <td><?php echo $booking['customer_name']; ?></td>
-                    <td><?php echo $booking['email']; ?></td>
-                    <td><?php echo $booking['phone']; ?></td>
-                    <td><?php echo $booking['package_name']; ?></td>
-                    <td><?php echo $booking['booking_date']; ?></td>
-                </tr>
-                <?php endwhile; ?>
+                <?php
+                require 'db.php';
+                $sql = "SELECT * FROM bookings";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>{$row['id']}</td>
+                                <td>{$row['customer_name']}</td>
+                                <td>{$row['email']}</td>
+                                <td>{$row['phone']}</td>
+                                <td>{$row['tour_package_id']}</td>
+                                <td>{$row['booking_date']}</td>
+                                <td>
+                                    <a href='edit_booking.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                                    <a href='delete_booking.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Apakah Anda yakin ingin menghapus data ini?\")'>Hapus</a>
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7' class='text-center'>Tidak ada data pemesanan.</td></tr>";
+                }
+                $conn->close();
+                ?>
             </tbody>
         </table>
         <a href="logout.php" class="btn btn-danger">Logout</a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
