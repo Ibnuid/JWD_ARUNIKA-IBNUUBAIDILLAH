@@ -20,4 +20,4 @@ Lisensi
 Proyek ini tidak memiliki lisensi terbuka untuk penggunaan umum. Hak cipta sepenuhnya dimiliki oleh pengembang.
 
 Kontak
-Jika Anda memiliki pertanyaan atau membutuhkan informasi lebih lanjut, Anda dapat menghubungi saya melalui LinkedIn || https://www.linkedin.com/in/ibnuubaidillah/.
+Jika Anda memiliki pertanyaan atau membutuhkan informasi lebih lanjut, Anda dapat menghubungi saya melalui LinkedIn || https://www.linkedin.com/in/ibnuubaidillah/
